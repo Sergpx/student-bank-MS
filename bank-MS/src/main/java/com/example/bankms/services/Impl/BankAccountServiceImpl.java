@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.bankms.repositories.BankAccountRepository;
 
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 @RequiredArgsConstructor
@@ -36,5 +37,23 @@ public class BankAccountServiceImpl implements BankAccountService {
     public Double getBalance(String accountNumber) {
         BankAccount account = bankRepository.findBankAccountsByAccountNumber(accountNumber).orElseThrow(()->new NotFoundException("not found accountNumber"));
         return account.getBalance();
+    }
+
+    public String createBankAccount(String firstName, String lastName) {
+
+        String accountNumber;
+        do {
+            accountNumber = Integer.toString(ThreadLocalRandom.current().nextInt(100_000, 1_000_000));
+        }
+        while (bankRepository.findBankAccountsByAccountNumber(accountNumber).isPresent());
+
+        BankAccount newBankAccount = BankAccount.builder()
+                .accountNumber(accountNumber)
+                .firstName(firstName)
+                .lastName(lastName)
+                .balance(0d)
+                .build();
+        bankRepository.save(newBankAccount);
+        return newBankAccount.getAccountNumber();
     }
 }

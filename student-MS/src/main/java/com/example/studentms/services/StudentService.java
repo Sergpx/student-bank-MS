@@ -5,7 +5,7 @@ import com.example.studentms.models.Student;
 
 public interface StudentService{
 
-    public Student createStudent(Student student);
+    public Student createStudent(Student student, String groupNumber);
 
     public Student getStudent(Long id);
 

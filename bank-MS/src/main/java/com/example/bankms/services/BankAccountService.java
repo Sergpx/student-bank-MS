@@ -9,4 +9,6 @@ public interface BankAccountService {
 
     public Double getBalance(String accountNumber);
 
+    public String createBankAccount(String firstName, String lastName);
+
 }

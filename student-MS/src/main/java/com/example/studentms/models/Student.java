@@ -7,18 +7,24 @@ import lombok.*;
 @Getter
 @RequiredArgsConstructor
 @Builder
-@NoArgsConstructor
+//@NoArgsConstructor
 @AllArgsConstructor
+@ToString
+@Table(name = "students")
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @Setter
     String firstName;
+    @Setter
     String lastName;
-    Long groupId;
+    @Setter
     String accountNumber;
 
+    //@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //@JoinColumn(name = "group_id", nullable = false)
+    @Setter
     @ManyToOne
-    Group group;
-
+    private Group group;
 }

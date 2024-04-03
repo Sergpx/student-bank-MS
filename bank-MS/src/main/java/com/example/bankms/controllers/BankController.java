@@ -18,6 +18,11 @@ public class BankController {
         return bankAccountService.getBalance(accountNumber);
     }
 
+    @PostMapping()
+    public String createBankAccount(@RequestBody ObjectNode objectNode){
+        return bankAccountService.createBankAccount(objectNode.get("firstName").asText(), objectNode.get("lastName").asText());
+    }
+
     @PostMapping("/transfer")
     public void transferGrant(@RequestBody ObjectNode objectNode){
         bankAccountService.transferGrant(objectNode.get("accountNumber").asText(), objectNode.get("grant").asDouble());
@@ -27,5 +32,9 @@ public class BankController {
     public void debitGrant(@RequestBody ObjectNode objectNode) throws Exception {
         bankAccountService.debitGrant(objectNode.get("accountNumber").asText(), objectNode.get("grant").asDouble());
     }
+
+    // deleteBankAccount
+
+    // UPDATE NAME AND LAST_NAME
 
 }
