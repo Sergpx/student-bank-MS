@@ -56,4 +56,11 @@ public class BankAccountServiceImpl implements BankAccountService {
         bankRepository.save(newBankAccount);
         return newBankAccount.getAccountNumber();
     }
+
+    public void updateName(String accountNumber, String firstName, String lastName){
+        BankAccount bankAccount = bankRepository.findBankAccountsByAccountNumber(accountNumber).orElseThrow(()->new NotFoundException("not found accountNumber"));
+        bankAccount.setFirstName(firstName);
+        bankAccount.setLastName(lastName);
+        bankRepository.save(bankAccount);
+    }
 }

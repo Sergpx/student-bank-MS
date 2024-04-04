@@ -14,7 +14,9 @@ public class BankAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @Setter
     String firstName;
+    @Setter
     String lastName;
     String accountNumber;
     @Setter

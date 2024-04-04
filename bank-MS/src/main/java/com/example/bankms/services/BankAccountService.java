@@ -11,4 +11,6 @@ public interface BankAccountService {
 
     public String createBankAccount(String firstName, String lastName);
 
+    public void updateName(String accountNumber, String firstName, String lastName);
+
 }

@@ -19,10 +19,20 @@ public class StudentController {
 
 
     @PostMapping("/{groupNumber}")
-    Student createStudent(@RequestBody Student student, @PathVariable String groupNumber){
+    public Student createStudent(@RequestBody Student student, @PathVariable String groupNumber){
         System.out.println(student);
         System.out.println(groupNumber);
         return studentService.createStudent(student, groupNumber);
+    }
+
+    @PutMapping
+    public Student updateStudent(@RequestBody Student student){
+        return studentService.updateStudent(student);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteStudentById(@PathVariable Long id){
+        studentService.deleteStudent(id);
     }
 
 }

@@ -23,6 +23,11 @@ public class BankController {
         return bankAccountService.createBankAccount(objectNode.get("firstName").asText(), objectNode.get("lastName").asText());
     }
 
+    @PutMapping("/{accountNumber}")
+    public void updateName(@RequestBody ObjectNode objectNode, @PathVariable String accountNumber){
+        bankAccountService.updateName(accountNumber, objectNode.get("firstName").asText(), objectNode.get("lastName").asText());
+    }
+
     @PostMapping("/transfer")
     public void transferGrant(@RequestBody ObjectNode objectNode){
         bankAccountService.transferGrant(objectNode.get("accountNumber").asText(), objectNode.get("grant").asDouble());
