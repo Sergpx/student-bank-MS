@@ -20,6 +20,7 @@ public class Student {
     @Setter
     String lastName;
     @Setter
+    @Column(nullable = false, unique = true)
     String accountNumber;
 
     //@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

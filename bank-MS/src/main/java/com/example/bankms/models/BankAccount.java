@@ -18,6 +18,7 @@ public class BankAccount {
     String firstName;
     @Setter
     String lastName;
+    @Column(nullable = false, unique = true)
     String accountNumber;
     @Setter
     Double balance;
